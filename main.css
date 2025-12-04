@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'Glacial Indifference';
+    src: url('fonts/glacial-indifference.regular.otf');
+}
+
+@font-face {
+    font-family: 'Glacial Indifference Bold';
+    src: url('fonts/glacial-indifference.bold.otf');
+}
+
+/* primary color: #c493d6 */
+/* primary color dark: #a473b6 */
+
+/* secondary color: #acbfc3 */
+/* secondary color dark: #8c9fa3 */
+
+* {
+    /* border: solid 1px #000; */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Glacial Indifference', sans-serif;
+    font-size: 15pt;
+    line-height: 1.5;
+    color: #333;
+    text-align: justify;
+}
+
+#container {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#menu {
+    text-align: center;
+    list-style: none;
+    margin: auto;
+    padding: 0;
+}
+
+#menu li {
+    display: inline-block;
+    margin: 20px;
+    font-size: 16pt;
+}
+
+#menu li a:link,
+#menu li a:visited,
+#menu li a:hover {
+    text-decoration: none;
+    color: #588473;
+    border-bottom: solid 3px white;
+    padding-bottom: 4px;
+}
+
+#menu li a:hover {
+    border-bottom: solid 3px #6c7f83;
+}
+
+h1#title {
+    color: #a473b6;
+    margin-bottom: 0;
+    font-size: 36pt;
+    font-family: 'Glacial Indifference Bold', sans-serif;
+    font-weight: 100;
+}
+
+h2#subtitle {
+    color: #845396;
+    margin-top: 0;
+    font-size: 24pt;
+}
+
+h3 {
+    color: #588473;
+    font-size: 28pt;
+}
