@@ -26,37 +26,45 @@ body {
     line-height: 1.5;
     color: #333;
     text-align: justify;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
-#container {
+.container {
     max-width: 768px;
     margin: 0 auto;
     padding: 0 20px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
 }
 
-#menu {
+#menu ul {
     text-align: center;
     list-style: none;
     margin: auto;
     padding: 0;
 }
 
-#menu li {
+#menu ul li {
     display: inline-block;
     margin: 20px;
     font-size: 16pt;
 }
 
-#menu li a:link,
-#menu li a:visited,
-#menu li a:hover {
+#menu ul li a:link,
+#menu ul li a:visited,
+#menu ul li a:hover {
     text-decoration: none;
     color: #588473;
     border-bottom: solid 3px white;
     padding-bottom: 4px;
 }
 
-#menu li a:hover {
+#menu ul li a:hover {
     border-bottom: solid 3px #6c7f83;
 }
 
@@ -77,4 +85,69 @@ h2#subtitle {
 h3 {
     color: #588473;
     font-size: 28pt;
+}
+
+section a:link,
+section a:visited,
+section a:hover {
+    text-decoration: none;
+    color: #845396;
+}
+
+section a:hover {
+    text-decoration: underline;
+}
+
+#up {
+    text-align: center;
+    margin: 50px 0;
+}
+
+#up a:link,
+#up a:visited,
+#up a:hover {
+    display: inline-block;
+    text-decoration: none;
+    color: #845396;
+    border: solid 3px #845396;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    font-size: 12pt;
+    border-top: solid 3px #845396;
+    background-color: #eee;
+}
+
+footer div {
+    padding: 1rem 2rem;
+}
+
+footer div:nth-child(1) {
+    text-align: left;
+}
+
+footer div:nth-child(2) {
+    text-align: center;
+    flex-grow: 1;
+}
+
+footer div:nth-child(3) {
+    text-align: right;
+}
+
+footer a:link,
+footer a:visited,
+footer a:hover,
+footer span {
+    text-decoration: none;
+    color: #845396;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
