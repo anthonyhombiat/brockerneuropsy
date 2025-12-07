@@ -32,6 +32,7 @@ body {
 .fixed {
     position: fixed;
     width: 100%;
+    z-index: 10000;
 }
 
 .hero {
@@ -161,8 +162,19 @@ section a:hover {
 }
 
 address {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     font-style: normal;
+    display: inline-block;
+}
+
+#map {
+    min-height: 300px;
+    width: 350px;
+    border: solid 5px #ffffff;
+    box-shadow: 0px 0px 1px rgba(50,0,50,0.5);
+    margin: 20px 20px 0 0;
+    border-radius: 10px;
+    float: left;
 }
 
 #carousel {

@@ -11,6 +11,7 @@ $(function() {
     });
     activateSection(getSection());
     smoothScroll();
+    initMap();
 
 });
 
@@ -57,4 +58,14 @@ function debounce(func, wait) {
             func.apply(context, args);
         }, wait);
     };
+}
+
+function initMap(){
+    const map = L.map('map').setView([45.18511879048208, 5.713807364989013], 12);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    L.marker([45.18511879048208, 5.713807364989013]).addTo(map)
+        .bindPopup('<div style="text-align:center"><strong>Lynn Bröcker</strong><br>Cabinet de neuropsychologie</div>')
+        .openPopup();
 }
