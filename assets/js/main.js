@@ -1,6 +1,15 @@
+let currentSection = "presentation";
+
 $(function() {
 
-    scrollSpy();
+    $(window).scroll(function() {
+        const section = getSection();
+        if(section !== currentSection){
+            activateSection(section);
+            currentSection = section;
+        }
+    });
+    activateSection(getSection());
     smoothScroll();
 
 });
@@ -19,22 +28,33 @@ function smoothScroll() {
     });
 }
 
-function scrollSpy(){
-
-    // $("nav #menu ul li a").removeClass("active");
-    // $(this).addClass("active");
-
-    $(window).scroll(function() {
-        const scroll = $(window).scrollTop();
-        $(".hero").each(function() {
-            const offset = $(this).offset().top;
-            if(scroll >= offset && scroll < offset + $(this).height()){
-                const id = $(this).attr("id");
-                $("nav #menu ul li a").removeClass("active");
-                $("nav #menu ul li a[href='#"+id+"']").addClass("active");
-            } else {
-                $("nav #menu ul li a").first().addClass("active");
-            }
-        });
+function getSection(){
+    const scroll = $(window).scrollTop() + 100;
+    let section = "presentation";
+    $(".hero").each(function(index) {
+        if(index === 0) return;
+        const offset = $(this).offset().top;
+        if(scroll >= offset && scroll){
+            section = $(this).attr("id");
+        } else {
+            return false;
+        }
     });
+    return section;
+}
+
+function activateSection(section) {
+    $("nav #menu ul li a").removeClass("active");
+    $("nav #menu ul li a[href='#" + section + "']").addClass("active");
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function() {
+        const context = this, args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            func.apply(context, args);
+        }, wait);
+    };
 }
