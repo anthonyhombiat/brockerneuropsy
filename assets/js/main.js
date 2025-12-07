@@ -1,6 +1,11 @@
 let currentSection = "presentation";
+const topOffset = 100;
 
 $(function() {
+
+    activateSection(getSection());
+    smoothScroll();
+    initMap();
 
     $(window).scroll(function() {
         const section = getSection();
@@ -9,18 +14,28 @@ $(function() {
             currentSection = section;
         }
     });
-    activateSection(getSection());
-    smoothScroll();
-    initMap();
+
+    $("nav #menu ul li a, .button").on('click', function(event) {
+        event.preventDefault();
+        const scrollTop = Math.round($($(this).attr('href')).offset().top - topOffset);
+        console.log(scrollTop);
+        scrollTo(scrollTop);
+    });
 
 });
 
+function scrollTo(scrollTop) {
+    $('html, body').stop().animate({
+        scrollTop: scrollTop
+    }, 800);
+}
+
 function smoothScroll() {
-    $("nav #menu ul li a, .button").click(function(event) {
+    $("nav #menu ul li a, .button").on('click', function(event) {
         event.preventDefault();
 
         let hash = this.hash;
-        $('html, body').animate({
+        $('html, body').stop().animate({
             scrollTop: hash ? $(this.hash).offset().top : 0
         }, 800, function(){
             if(hash)
@@ -30,7 +45,7 @@ function smoothScroll() {
 }
 
 function getSection(){
-    const scroll = $(window).scrollTop() + 100;
+    const scroll = $(window).scrollTop() + topOffset;
     let section = "presentation";
     $(".hero").each(function(index) {
         if(index === 0) return;
