@@ -1,11 +1,11 @@
-let currentSection = "presentation";
-const topOffset = 100;
+const topOffset = 50;
 
 $(function() {
 
-    activateSection(getSection());
-    smoothScroll();
+    let currentSection = getSection();
+    activateSection(currentSection);
     initMap();
+    revealOnScroll();
 
     $(window).scroll(function() {
         const section = getSection();
@@ -13,35 +13,36 @@ $(function() {
             activateSection(section);
             currentSection = section;
         }
+        revealOnScroll();
     });
 
-    $("nav #menu ul li a, .button").on('click', function(event) {
+    $(".button[href^='#'], #fixed-navbar a[href^='#']").on('click', function(event) {
         event.preventDefault();
-        const scrollTop = Math.round($($(this).attr('href')).offset().top - topOffset);
-        console.log(scrollTop);
-        scrollTo(scrollTop);
+        const hash = $(this).attr('href');
+        let scrollTop = 0;
+        if(hash != "#presentation")
+            scrollTop = $(hash).offset().top - topOffset;
+        smoothScrollTo(scrollTop);
+        window.location.hash = this.hash;
+    });
+
+    // Burger menu behaviour
+    $("#burger").on('click', event => {
+        event.preventDefault();
+        $("#mobile-menu").hasClass("active") ? closeMobileMenu() : openMobileMenu();
+    });
+
+    // Close mobile menu on click on menu items
+    $("#mobile-menu li a").on('click', event => {
+        closeMobileMenu();
     });
 
 });
 
-function scrollTo(scrollTop) {
+function smoothScrollTo(scrollTop) {
     $('html, body').stop().animate({
         scrollTop: scrollTop
     }, 800);
-}
-
-function smoothScroll() {
-    $("nav #menu ul li a, .button").on('click', function(event) {
-        event.preventDefault();
-
-        let hash = this.hash;
-        $('html, body').stop().animate({
-            scrollTop: hash ? $(this.hash).offset().top : 0
-        }, 800, function(){
-            if(hash)
-                window.location.hash = hash;
-        });
-    });
 }
 
 function getSection(){
@@ -60,8 +61,10 @@ function getSection(){
 }
 
 function activateSection(section) {
-    $("nav #menu ul li a").removeClass("active");
-    $("nav #menu ul li a[href='#" + section + "']").addClass("active");
+    $("#menu a").removeClass("active");
+    $("#menu a[href='#" + section + "']").addClass("active");
+    // $(".hero").removeClass("visible");
+    // $(".hero#" + section).addClass("visible");
 }
 
 function debounce(func, wait) {
@@ -84,3 +87,26 @@ function initMap(){
         .bindPopup('<div style="text-align:center"><strong>Lynn Bröcker</strong><br>Cabinet de neuropsychologie</div>')
         .openPopup();
 }
+
+function closeMobileMenu(){
+    $("#mobile-menu").removeClass("active");
+    $("#burger").text('☰');
+}
+
+function openMobileMenu(){
+    $("#mobile-menu").addClass("active");
+    $("#burger").text('⨯');
+}
+
+function revealOnScroll() {
+    $('.hero').each(function() {
+        var sectionTop = $(this).offset().top;
+        var scrollTop = $(window).scrollTop();
+        var windowHeight = $(window).height();
+
+        // If section is within viewport
+        if (scrollTop + windowHeight > sectionTop + 100) {
+            $(this).addClass('visible');
+        }
+    });
+  }

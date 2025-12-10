@@ -22,28 +22,46 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Glacial Indifference', sans-serif;
-    font-size: 15pt;
-    line-height: 1.5;
+    font-size: 1.125rem;
+    hyphens: auto;
+    line-height: 1.4;
     color: #333;
     text-align: justify;
     background-color: #cbe3dc;
+    /* background: url('mesh-gradient.svg') no-repeat center center fixed;
+    background-size: cover; */
 }
 
-.fixed {
+#fixed-navbar {
     position: fixed;
-    width: 100%;
+    width: 100vw;
     z-index: 10000;
+    border-bottom: solid 5px #643376;
+    background: linear-gradient(120deg, #845396, #9463a6);
 }
 
-.hero {
-    max-width: 768px;
-    margin: 0 auto;
-    padding: 0;
-    min-height: calc(100vh - 90px - 20px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+#mobile-menu {
+    display: none;
+    list-style: none;
+    color: #f6ecfb;
+    margin-top: 10px;
+    padding-left: 58px;
+}
+
+#mobile-menu li {
+    padding: 5px;
+    font-size: 1.25rem;
+}
+
+#mobile-menu.active {
+    display: block;
+}
+
+#mobile-menu li a:link,
+#mobile-menu li a:visited,
+#mobile-menu li a:hover {
+    text-decoration: none;
+    color: #f6ecfb;
 }
 
 nav {
@@ -51,14 +69,20 @@ nav {
     flex-direction: row;
     align-items: center;
     min-height: 60px;
-    border-bottom: solid 5px #643376;
-    background: linear-gradient(120deg, #845396, #9463a6);
+    width: 100%;
 }
 
 nav #brand {
     margin-left: 20px;
     font-family: 'Glacial Indifference Bold', sans-serif;
-    font-size: 18pt;
+    font-size: 1.5rem;
+    color: #f6ecfb;
+}
+
+nav #brand:link,
+nav #brand:visited,
+nav #brand:hover {
+    text-decoration: none;
     color: #f6ecfb;
 }
 
@@ -66,13 +90,14 @@ nav #menu {
     display: flex;
     justify-content: end;
     flex-grow: 1;
-    font-size: 15pt;
+    font-size: 1.2rem;
     color: #f6ecfb;
+    margin-right: 20px;
 }
 
 nav #menu #burger {
-    font-size: 26pt;
-    margin-right: 20px;
+    font-size: 2.2rem;
+    margin-right: 6px;
 }
 
 nav #menu ul {
@@ -85,7 +110,7 @@ nav #menu ul {
 }
 
 nav #menu ul li {
-    margin: auto 1rem;
+    margin: auto 0.7rem;
 }
 
 nav #menu ul li a:link,
@@ -105,10 +130,31 @@ nav #menu ul li a:hover {
     color: #f6ecfb;
 }
 
+main {
+    padding-top: 90px;
+}
+
+.hero {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0;
+    min-height: calc(100vh - 90px - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.hero.visible {
+    opacity: 1;
+}
+
 h1#title {
     color: #a473b6;
     margin: 0;
-    font-size: 36pt;
+    font-size: 2.5rem;
     font-family: 'Glacial Indifference Bold', sans-serif;
     font-weight: 100;
 }
@@ -116,11 +162,10 @@ h1#title {
 h2#subtitle {
     color: #915fa3;
     margin-top: -6px;
-    font-size: 24pt;
-}
-
-main {
-    padding-top: 90px;
+    padding-bottom: 12px;
+    font-size: 1.75rem;
+    font-weight: normal;
+    border-bottom: solid 4px #a473b6
 }
 
 i {
@@ -130,24 +175,60 @@ i {
 h3 {
     display: flex;
     color: #915fa3;
-    font-size: 28pt;
+    font-size: 1.9rem;
     margin: 0;
 }
 
 h3 i {
     padding: 10px 0px;
-    margin-right: 20px;
+    margin-right: 16px;
     color: #a16fb3;
 }
 
+h3 span {
+    position: relative;
+    top: 6px;
+}
+
+p i {
+    color: #73c4a4;
+}
+
+.tag {
+    display: inline-block;
+    padding: 3px 8px 4px 8px;
+    background-color: white;
+    border-radius: 6px;
+    font-size: 11pt;
+    margin: 0px 4px 6px 0px;
+    color: #555;
+}
+
+.tag i {
+    color: #66bda4;
+}
+
+h4 {
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding-bottom: 4px;
+    color: #6eb097;
+    font-size: 14pt !important;
+    border-bottom: solid 3px #91bdac;
+}
+
 section {
-    padding: 30px;
+    padding: 20px 30px 24px 30px;
     background: linear-gradient(135deg, #f8fffc, white);
     border: solid 5px #9bb3ac;
-    border-radius: 10px;
-    margin-bottom: 40px;
+    border-radius: 32px;
+    margin: 32px 0px 32px 0px;
     box-shadow: 0px 6px 0px rgba(0,50,30,0.5);
-    min-width: calc(100% - 60px - 10px); /* fullwidth - padding - border */
+    min-width: calc(100% - 60px - 20px - 0px); /* fullwidth - padding - margin - border */
+}
+
+main .hero:first-of-type section {
+    margin-top: 0;
 }
 
 section a:link,
@@ -168,8 +249,8 @@ address {
 }
 
 #map {
-    min-height: 300px;
-    width: 350px;
+    min-height: 200px;
+    min-width: 275px;
     border: solid 5px #ffffff;
     box-shadow: 0px 0px 1px rgba(50,0,50,0.5);
     margin: 20px 20px 0 0;
@@ -189,13 +270,7 @@ address {
     max-width: 100%;
     margin: 0 6px;
     border-radius: 10px;
-    border: solid 5px #ad7dbe;
-    box-shadow: 0px 6px 0px rgba(50,0,50,0.75);
-}
-
-#up {
-    text-align: center;
-    margin: 50px 0;
+    border: solid 4px white;
 }
 
 .button:link,
@@ -205,7 +280,7 @@ address {
     text-decoration: none;
     color: #f6ecfb;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #845396;
     background: linear-gradient(120deg, #845396, #9463a6);
     box-shadow: 0px 6px 0px rgba(50,0,50,0.75);
@@ -222,11 +297,28 @@ address {
     top: 6px;
 }
 
+.button#up {
+    margin-bottom: 40px;
+}
+
+.block {
+    background-color: #daf4ea;
+    border-radius: 20px;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+    display: block;
+    font-size: 1.05rem;
+    margin-top: 20px;
+}
+
+.block ul {
+    padding-left: 2.5rem;
+}
+
 footer {
     display: flex;
     flex-direction: row;
     width: 100%;
-    font-size: 12pt;
+    font-size: 1rem;
     color: #ddc6e8;
     border-top: solid 5px #643376;
     background: linear-gradient(120deg, #845396, #9463a6);
@@ -235,6 +327,7 @@ footer {
 footer div:nth-child(1) {
     text-align: left;
     padding: 1rem 0 1rem 1rem;
+    max-width: 30%;
 }
 
 footer div:nth-child(2) {
@@ -261,6 +354,27 @@ footer a:hover {
 
 img {
     max-width: 300px;
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        padding-top: 60px;
+    }
+    .hero {
+        min-height: 0;
+    }
+    section {
+        padding: 20px 25px 24px 25px;
+        border-radius: 0;
+        border-right: none;
+        border-left: none;
+        border-bottom: none;
+        margin: 0;
+        box-shadow: none;
+    }
+    .button {
+        display: none !important;
+    }
 }
 
 @media screen and (max-width: 1215px) {

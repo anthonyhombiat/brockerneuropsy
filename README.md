@@ -2,5 +2,4 @@
 
 ## TODO
 
-* Ajouter burger menu
 * Caroussel
