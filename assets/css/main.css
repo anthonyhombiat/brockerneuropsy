@@ -169,7 +169,7 @@ h2#subtitle {
 }
 
 i {
-    margin-right: 6px;
+    margin-right: 4px;
 }
 
 h3 {
@@ -196,10 +196,10 @@ p i {
 
 .tag {
     display: inline-block;
-    padding: 3px 8px 4px 8px;
+    padding: 4px 7px 4px 7px;
     background-color: white;
     border-radius: 6px;
-    font-size: 11pt;
+    font-size: 0.9rem;
     margin: 0px 4px 6px 0px;
     color: #555;
 }
@@ -209,12 +209,8 @@ p i {
 }
 
 h4 {
-    margin-top: 20px;
-    margin-bottom: 0;
-    padding-bottom: 4px;
-    color: #6eb097;
-    font-size: 14pt !important;
-    border-bottom: solid 3px #91bdac;
+    margin: 12px 0px 0px 0px;
+    font-size: 1rem;
 }
 
 section {

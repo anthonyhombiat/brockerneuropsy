@@ -2,4 +2,4 @@
 
 ## TODO
 
-* Caroussel
+* Carousel
